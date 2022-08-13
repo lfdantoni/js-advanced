@@ -118,3 +118,12 @@ formElement.addEventListener('submit', e => {
     // e.target.submit()
   }
 })
+
+// Custom Events
+document.addEventListener('look', event => {
+  console.log('LOOK EVENT', event)
+})
+
+const evt = new Event('look', {"bubbles": true, "cancelable": false }) // this event is fired in bubbling and cannot be canceled / este evento se dispara en bubbling y no puede ser cancelado
+evt.data = { value: 1 }
+document.dispatchEvent(evt)
