@@ -1,13 +1,17 @@
+const form2 = document.getElementById('form2')
+form2.addEventListener('submit', e => {
+  e.preventDefault()
+  console.log('form2 submit')
+})
+
 const noFormInput = document.getElementById('no-form-input')
 const sendBtn = document.getElementById('send')
 
 sendBtn.addEventListener('click', () => {
   // checkValidity 
   const inputValid = noFormInput.checkValidity()
-
   console.log('noFormInput validation:', inputValid)
 })
-
 
 const form = document.getElementById('form')
 const nameInput = document.getElementById('name')
@@ -41,6 +45,10 @@ form.addEventListener('submit', e => {
   // encodeURIComponent => scape sensitive caracters, prevents XSS atacks / escapea caracteres sensibles, previene ataques XSS
   console.log('encodeURIComponent: ',encodeURIComponent('https://google.com'))
 
+  const nameStr = "John"
+  const character = nameStr[0]
+  console.log('character', character)
+  console.log('a code: %d, z code: %d, A code: %d, Z code: %d', 'a'.charCodeAt(), 'z'.charCodeAt(),'A'.charCodeAt(), 'Z'.charCodeAt())
   /////////////////////////////////
   // REGEXP
   /////////////////////////////////
@@ -94,4 +102,18 @@ form.addEventListener('submit', e => {
   // abc
   //  abc  ([space]abc[space])
   console.log('regexp - end or initial position -> (abc)\\b: ', /\b(abc)\b/.test(regexpValue))
+
+  // range / rango
+  console.log('regexp - [LMN] options', /[LMN]/.test(regexpValue))
+  console.log('regexp - [a-z] range', /[a-z]/.test(regexpValue))
+  console.log('regexp - [a-z0-9] range', /[a-z0-9]/.test(regexpValue))
+
+  // string functions
+  console.log('regexp - String.match', regexpValue.match(/te/gi)) // Test te => [Te, te]
+  console.log('regexp - String.replace', regexpValue.replace(/te/gi, '12'))  // Test tesss => 12st 12sss
+  console.log('regexp - String.split', regexpValue.split(/[,.\s]/gi) ) // test.test2 test3 => ['test', 'test2', 'test3']
+
+  // Using RegExp
+  const re = new RegExp('asa$');
+  console.log('RegExp', re.test(regexpValue))
 })
