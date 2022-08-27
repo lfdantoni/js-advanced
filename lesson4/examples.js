@@ -11,7 +11,7 @@
  // methods: GET/POST/PUT/PATCH/DELETE
  // external requests / pedidos externos: CORS - Cross Origin Resource Sharing
  // xhr.open(METHOD, URL, async) => async is a boolean and it is optional
- xhr.open('get', 'texto.txt')
+ xhr.open('get', 'text.txt')
  console.log(xhr.readyState)
  
  //XAMPP - https://www.apachefriends.org/download.html
@@ -49,5 +49,5 @@
  
  // SEND REQUEST / enviar request
  xhr.send() // error if the app is not in server enviroment /  error si la aplicacion no esta en un entorno de servidor
- console.log(xhr.response) // it's empty, the request haven't finished yet / esta vacio, el pedido no hay terminado
+ console.log(xhr.response) // it's empty, the request hasn't finished yet / esta vacio, el pedido no ha terminado
  
