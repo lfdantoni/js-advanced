@@ -42,12 +42,12 @@
  })
  
  // TIMEOUT
- // xhr.addEventListener('readystatechange', () => {
- //   console.log('TIMEOUT!')
- // })
- // xhr.timeout = 1;
+ xhr.addEventListener('timeout', () => {
+   console.log('TIMEOUT!')
+ })
+ xhr.timeout = 1;
  
  // SEND REQUEST / enviar request
- xhr.send() // error if the app is not in server enviroment /  error si la aplicacion no esta en un entorno de servidor
+ xhr.send() // error if the app is not in server environment /  error si la aplicacion no esta en un entorno de servidor
  console.log(xhr.response) // it's empty, the request hasn't finished yet / esta vacio, el pedido no ha terminado
  
