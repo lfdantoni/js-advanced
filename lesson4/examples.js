@@ -42,10 +42,10 @@
  })
  
  // TIMEOUT
- // xhr.addEventListener('readystatechange', () => {
- //   console.log('TIMEOUT!')
- // })
- // xhr.timeout = 1;
+ xhr.addEventListener('timeout', () => {
+  console.log('TIMEOUT!')
+})
+xhr.timeout = 1;
  
  // SEND REQUEST / enviar request
  xhr.send() // error if the app is not in server enviroment /  error si la aplicacion no esta en un entorno de servidor
