@@ -32,7 +32,9 @@ links.forEach(link => {
   })
 })
 
-const xhr = ajax('home.html');
+const id = location.pathname.split('/')[1] || 'home'
+  
+const xhr = ajax(id + '.html')
 xhr.addEventListener('load', () => {
   if(xhr.status === 200) {
     content.innerHTML = xhr.response;
