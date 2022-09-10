@@ -16,8 +16,6 @@
   <button id="create-values">Create Values!</button>
 
   <script>
-    const form = document.getElementById('my-form')
-
     const showIteratorValues = iterator => {
       let currentIteration = iterator.next();
       console.log('currentIteration', currentIteration)
@@ -27,6 +25,33 @@
         currentIteration = iterator.next();
       }
     }
+
+    //////////////////////////////////////////
+    // FormData without form / FormData sin un formulario
+    ////////////////////////////////////////////
+    const button = document.getElementById('create-values')
+
+    button.addEventListener('click', () => {
+      const data = new FormData()
+
+      for (let index = 0; index < 10; index++) {
+        data.append(`element-${index}`, index)
+      }
+
+      console.log('element-0', data.get('element-0'))
+
+      const values = data.values();
+      const keys = data.keys();
+
+      console.log('KEYS')
+      showIteratorValues(keys)
+
+      console.log('VALUES')
+      showIteratorValues(values)
+    })
+
+
+    const form = document.getElementById('my-form')
 
     form.addEventListener('submit', e => {
       e.preventDefault()
@@ -40,28 +65,6 @@
 
     })
 
-
-    //////////////////////////////////////////
-    // FormData without form / FormData sin un formulario
-    ////////////////////////////////////////////
-    const button = document.getElementById('create-values')
-
-    button.addEventListener('click', () => {
-      const data = new FormData()
-
-      for (let index = 0; index < 10; index++) {
-        data.append(`elemnt-${index}`, index)
-      }
-
-      const values = data.values();
-      const keys = data.keys();
-
-      console.log('KEYS')
-      showIteratorValues(keys)
-
-      console.log('VALUES')
-      showIteratorValues(values)
-    })
   </script>
 </body>
 </html>

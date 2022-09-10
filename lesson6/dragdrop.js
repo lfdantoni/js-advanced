@@ -4,6 +4,7 @@ const file = document.getElementById('my-file')
 const filesToProcess = files => {
   console.log(files)
 
+  // See formdata example first / ver el ejemplo formdata primero 
   const data = new FormData()
   
   for (let index = 0; index < files.length; index++) {
