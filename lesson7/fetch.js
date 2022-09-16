@@ -18,3 +18,18 @@ usersPromise
   .then(posts => {
     console.log(posts)
   })
+
+
+fetch(`${url}/posts`, {
+  method: 'POST',
+  body: JSON.stringify({
+    title: 'foo2',
+    body: 'bar',
+    userId: 1,
+  }),
+  headers: {
+    'Content-type': 'application/json',
+  },
+})
+.then((response) => response.json())
+.then((json) => console.log(json));
