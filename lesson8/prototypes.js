@@ -23,6 +23,21 @@ let myConfigObject = Object.create(null, // first param is null, so myConfigObje
   }
 })
 
+/*
+  // it is similar to:
+
+  let myConfigObject = Object.create(null)
+  Object.defineProperty(myConfigObject, 'myValue', {
+    value: 1, // real value / valor real
+    writable: false, // allow writing / permite escritura => default: false
+    enumerable: false, // allow iteration / permite iteracion => default: false
+    configurable: false // allow deletion / permite borrado => default: false
+  })
+
+*/
+
+console.log('myConfigObject descriptor', Object.getOwnPropertyDescriptor(myConfigObject, 'myValue')) // {value: 1, writable: false, enumerable: false, configurable: false}
+
 console.log('myConfigObject', myConfigObject)
 
 myConfigObject.myValue = 10
@@ -35,6 +50,52 @@ console.log('after an iteration', myConfigObject)
 
 delete myConfigObject.myValue
 console.log('after a deletion', myConfigObject)
+
+const objNoWritable = Object.create(Object.prototype, {myValue: {value: 1, configurable: true, writable: false} } )
+console.log('objNoWritable.myValue', myConfigObject.myValue) // 1
+
+Object.defineProperty(objNoWritable, 'myValue', {value: 2, configurable: true, writable: false})
+console.log('objNoWritable.myValue', myConfigObject.myValue) // 2
+
+console.log('-----------------------------------------------------------------------')
+
+const obj = {
+  prop: 123,
+  get current() {
+    return this.currentAux
+  },
+  set current(value) {
+    this.currentAux = value
+  },
+}
+
+console.log(obj.current) // undefined - get current()
+console.log(obj.currentAux) // undefined
+
+obj.current = 333 // calls to set current(333) / llama a set current(333)
+
+console.log(obj.current) // 333 - get current()
+console.log(obj.currentAux) // 333
+
+console.log(obj) // {prop: 123, currentAux: 333}
+/**
+  current: (...)
+  currentAux : 333
+  prop : 123
+  get current : ƒ current()
+  set current : ƒ current(value)
+*/
+
+// read-only property / propiedad de solo lectura
+
+const obj2 = {
+  prop: 222,
+  get autoCalculated() {
+    return this.prop / 2
+  },
+}
+
+console.log(obj2.autoCalculated) // 111
 
 console.log('-----------------------------------------------------------------------')
 
@@ -66,6 +127,8 @@ function externalFunction(paramExternal) {
 const result = externalFunction(50)
 result(30) // 50 + 30 = 80
 
+console.dir(result) // [[Scopes]] => Closure (externalFunction) {paramExternal: 50}
+
 
 // CONTEXT
 
@@ -83,6 +146,8 @@ ctx.apply({x: 1}, [10, 20]) // context is {x: 1}
 console.log('CONTEXT CALL')
 ctx.call() // context is window
 ctx.call({x: 1}, 10, 20) // context is {x: 1}
+
+ctx.bind({x: 1}) // set context {x: 1} but it is not executed / setea el contexto pero no ejecuta la funcion
 
 console.log('-----------------------------------------------------------------------')
 
@@ -126,7 +191,7 @@ function Person(name, age) {
 // actions performed by 'new' operator / acciones realizadas por el operador 'new'
 /*
 let a = {} // template / plantilla
-Person.call(a) // call Person function and override its context with a / llama a la funcion Person y sobrescribe su context con 'a'
+Person.call(a, param1, param2, ...) // call Person function and override its context with a / llama a la funcion Person y sobrescribe su context con 'a'
 return a
 */
 

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: space-around;
+    }
+    .droppable {
+      width: 500px;
+      min-height: 500px;
+      background-color: yellow;
+      border: 1px solid black;
+      margin: 0;
+      padding: 10px;
+    }
+
+    .draggable {
+      background-color: aqua;
+      border: 1px solid green;
+      height: 100px;
+    }
+  </style>
+</head>
+<body>
+  <p id="target" class="droppable">
+    Drop Zone
+  </p>
+
+  <div draggable="true" id="target1" class="draggable">To Drag</div>
+  <div draggable="true" id="target2" class="draggable">To Drag2</div>
+  <div draggable="true" id="target3" class="draggable">To Drag3</div>
+  <script src="dragdrop-dom.js"></script>
+</body>
+</html>

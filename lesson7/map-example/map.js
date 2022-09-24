@@ -1,13 +1,13 @@
 // https://leafletjs.com/reference.html
 
-const initMap = (domeElementId) => {
+const initMap = (domElementId) => {
   const circleConfigDefault = {
     color: 'blue',
     fillColor: '#f03',
     fillOpacity: 0.5,
   }
 
-  const map = L.map(domeElementId)
+  const map = L.map(domElementId)
 
   L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
