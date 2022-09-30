@@ -19,4 +19,16 @@ a = 1 // OK!
 
 // delete staticObject.x // this will throw an error on strict mode / esto va a lanzar un error en modo estricto
 
+(function() {
+  'use strict'
+  const staticObjectAux = Object.create(null, {
+    x: {
+      value: 1
+    }
+  })
+
+  // delete staticObjectAux.x // it will fail
+  // staticObjectAux.x = 2 // it will fail
+})()
+
 // more info in https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode

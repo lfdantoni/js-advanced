@@ -1,182 +1,238 @@
+const game = initGame({mapElementId: 'map'})
+
+// player classes: 'warrior' or 'wizard'
+// hp: 0 - 100
+
+// const player = {
+//   x: 5,
+//   y: 10,
+//   class: 'warrior',
+//   hp: 75
+// }
+
+
 /////////////////////////////////////////////
 // Example 1
 ////////////////////////////////////////////
 
-// function Person() { }
+// function Player() { }
 
-// Person.prototype.age = 21;
+// Player.prototype.hp = 70;
 
-// const juan = new Person()
+// const player = new Player()
 
-// console.dir(Person)
-// console.dir(juan)
-// console.log(juan.age)
+// console.dir(Player)
+// console.dir(player)
+// console.log(player.hp)
 
 //////////////////////////////////////////////////////////
 // Example 2
 //////////////////////////////////////////////////////////
 
-// function Person(name) {
-//   this.name = name
+// function Player(x, y) {
+//   this.x = x
+//   this.y = y
 // }
 
-// Person.prototype.age = 21;
+// Player.prototype.hp = 20;
 
-// const julia = new Person()
+// const player = new Player()
+// const player2 = new Player()
 
-// console.log(juan.age)
-// console.log(julia.age) // both are the same due to age is a prototype property / ambas son iguales debido a que age es una propiedad de prototipo
+// console.log(player.hp)
+// console.log(player2.hp) // both are the same due to hp is a prototype property / ambas son iguales debido a que hp es una propiedad de prototipo
 
-// age should be an instance property / age deberia ser una propiedad de instancia
-// function Person(name, age) {
-//   this.name = name
-//   this.age = age
+// hp should be an instance property / hp deberia ser una propiedad de instancia
+// function Player(x, y, hp) {
+//   this.x = x
+//   this.y = y
+//   this.hp = hp
 // }
 
-// Person.prototype.greeting = function() {
-//   console.log('hello there!', this)
+// Player.prototype.attack = function() {
+//   console.log('Attacking!', this)
 // } 
 
-// const julia = new Person('Julia', 18)
-// const juan = new Person('juan', 21)
+// const player = new Player(10, 10, 100)
+// const player2 = new Player(10, 15, 80)
 
 
-// console.log(juan.age)
-// console.log(julia.age)
+// console.log(player.hp)
+// console.log(player2.hp)
 
-// juan.greeting()
-// julia.greeting()
+// player.attack()
+// player2.attack()
 
 //////////////////////////////////////////////////////////
 // Example 3
 //////////////////////////////////////////////////////////
-// const juan = new Person()
+// const player = new Player()
 
-// function Person() {}
+// function Player() {}
 
-// // const julia = new Worker() // that will fail / esto va a fallar
+// // const playerClass = new Wizard() // that will fail / esto va a fallar
 
-// class Worker {}
+// class PlayerClass {}
 
-// const julia = new Worker()
+// const playerClass = new PlayerClass()
 
-// look at juan and julia prototypes on console / mirar los prototipos de juan y julia en la consola
+// look at Player and playerClass prototypes on console / mirar los prototipos de juan y julia en la consola
 
 
 //////////////////////////////////////////////////////////
 // Example 4
 //////////////////////////////////////////////////////////
-// const juan = new Person('Juan')
+// const player = new Player(10, 10, 100)
 
-// function Person(name) {
-//   this.name = name
+// function Player(x, y, hp) {
+//   this.x = x
+//   this.y = y
+//   this.hp = hp
 // }
 
-// // const julia = new Worker() // that will fail / esto va a fallar
+// // const playerClass = new PlayerClass() // that will fail / esto va a fallar
 
-// class Worker {
-//   constructor(name) {
-//     this.name = name
+// class PlayerClass {
+//   constructor(classType) {
+//     this.playerClass = classType
 //   }
 // }
 
-// const julia = new Worker('Julia')
+// const wizardClass = new PlayerClass('wizard')
 
+//////////////////////////////////////////////////////////
+// Example 4.1 - Class declaration / Declaracion de clase
+//////////////////////////////////////////////////////////
+
+// class PlayerClass {
+//   constructor(classType) {
+//     this.playerClass = classType
+//   }
+// }
+
+//////////////////////////////////////////////////////////
+// Example 4.2 - Class expression / Expresion de clase
+//////////////////////////////////////////////////////////
+
+// const PlayerClass = class {
+//   constructor(classType) {
+//     this.playerClass = classType
+//   }
+// }
+
+//////////////////////////////////////////////////////////
+// Example 4.3 - getters / setters
+//////////////////////////////////////////////////////////
+
+// class PlayerClass {
+//   constructor(classType) {
+//     this.playerClass = classType
+//   }
+
+//   set description(value) {
+//     this.descriptionValue = value
+//   }
+
+//   get description() {
+//     return this.descriptionValue
+//   }
+// }
 
 //////////////////////////////////////////////////////////
 // Example 5
 //////////////////////////////////////////////////////////
-// function Person(name) {
-//   this.name = name
+// function Player(x, y, hp) {
+//   this.x = x
+//   this.y = y
+//   this.hp = hp
 // }
 
-// Person.prototype.sayHi = function() {
-//   console.log('Hello there!')
-// }
+// Player.prototype.attack = function() {
+//   console.log('Attacking!', this)
+// } 
 
-// class Worker {
-//   constructor(name) {
-//     this.name = name
+// class PlayerClass {
+//   constructor(classType) {
+//     this.playerClass = classType
 //   }
-
-//   sayHi() {
-//     console.log('Hello there!')
-//   }
-  
 // }
 
-// const juan = new Person('Juan')
-// const julia = new Worker('Julia')
-// look at juan and julia prototypes on console / mirar los prototipos de juan y julia en la consola
+// const player = new Player(10, 10, 80)
+// const playerClass = new PlayerClass('wizard')
+// // look at player and playerClass prototypes on console / mirar los prototipos de player y playerClass en la consola
+
+// const descriptor = Object.getOwnPropertyDescriptor(PlayerClass, 'prototype') // {value: {…}, writable: false, enumerable: false, configurable: false}
+// console.log('descriptor', descriptor)
+// PlayerClass.prototype = {}
+// console.log(PlayerClass.prototype)  // no change
+
 
 //////////////////////////////////////////////////////////
 // Example 6
 //////////////////////////////////////////////////////////
-// function Person(name) {
-//   this.name = name
+// function Player(x, y, hp) {
+//   this.x = x
+//   this.y = y
+//   this.hp = hp
 // }
 
-// Person.classMethod = function() {
-//   console.log('Person class method!')
+// Player.classMethod = function() {
+//   console.log('Player class method!')
 // }
 
-// Person.prototype.sayHi = function() {
-//   console.log('Hello there!')
-// }
+// Player.prototype.attack = function() {
+//   console.log('Attacking!', this)
+// } 
 
-// class Worker {
-//   constructor(name) {
-//     this.name = name
+// class PlayerClass {
+//   constructor(classType) {
+//     this.playerClass = classType
 //   }
 
-//   sayHi() {
-//     console.log('Hello there!')
+//   addNewSkill() {
+//     console.log('New skill added!')
 //   }
 
 //   static classMethod() {
-//     console.log('Worker class method!')
+//     console.log('PlayerClass class method!')
+//     console.dir(this)
 //   }
-  
 // }
 
-// console.dir(Person)
-// console.dir(Worker)
-// const juan = new Person('Juan')
-// const julia = new Worker('Julia')
-// Person.classMethod()
-// Worker.classMethod()
-// juan.classMethod() // it will fail due to it is not an instance method / esto va a fallar ya que classMethod no es un metodo de instancia
+// console.dir(Player)
+// console.dir(PlayerClass)
+// const player = new Player(10, 10, 80)
+// const playerClass = new PlayerClass('wizard')
+// Player.classMethod()
+// PlayerClass.classMethod()
+// player.classMethod() // it will fail due to it is not an instance method / esto va a fallar ya que classMethod no es un metodo de instancia
 
 
 /////////////////////////////////////////////
 // Example 7 - Object inheritance with prototypes / herencia de objetos con prototipos
 ////////////////////////////////////////////
-// const person = {
-//   greeting: function() {
-//     console.log('Hello there!')
-//   }
+// const playerPrototype = {
+//   x: 10,
+//   y: 10, 
+//   hp: 80
 // }
 
-// const julia = Object.create(person)
-// // const juan = Object.create(person)
+// // const player = Object.create(playerPrototype)
+// const player2 = Object.create(playerPrototype)
 
 // // show both on the browser console / ver ambos objetos en la consola del browser
 
-// const worker = {
-//   working: function() {
-//     console.log('I am working...')
-//   }
+// const wizardPrototype = {
+//   playerClass: 'wizard'
 // }
 
-// // const juan = Object.create(worker)
+// const wizard = Object.create(wizardPrototype)
 
-// // worker could be a person, however, now there is no connection between them / worker podria ser una persona, sin embargo, actualmente no tienen ninguna coneccion
+// // player could be a wizard, however, now there is no connection between them / player podria ser un mago, sin embargo, actualmente no tienen ninguna coneccion
 
-// const juan = Object.create(person, {
-//   working: {
-//     value: function() {
-//       console.log('I am working...')
-//     }
+// const player = Object.create(playerPrototype, {
+//   playerClass: {
+//     value: 'wizard'
 //   }
 // })
 
@@ -184,88 +240,102 @@
 // Example 8 - Class inheritance with prototypes / herencia de clases con prototipos
 ////////////////////////////////////////////
 // // Super class
-// function Person(name) {
-//   this.name = name
+// function PlayerClass(classType) {
+//   this.playerClass = classType
 // }
 
-// Person.prototype.sayHi = function() {
-//   console.log('Hello there!')
+// // // Sub class
+// function Player(x, y, hp) {
+//   this.x = x
+//   this.y = y
+//   this.hp = hp
 // }
 
-// // Sub class
-// function Worker(salary) {
-//   this.salary = salary
-// }
-
-// // Worker.prototype = Person.prototype
-// // Worker.prototype.working = function() {
-// //   console.log('I am working...')
+// // PlayerClass.prototype.addSkill = function() {
+// //   console.log('Skill added!')
 // // }
 
-// // console.dir(Worker) // Problem: worker and person methods are mixing in the same prototype / Problema: los metodos the worker y person estan mezclados en el mismo prototipo
+// // Player.prototype = PlayerClass.prototype
+// // Player.prototype.attack = function() {
+// //   console.log('Attacking!', this)
+// // } 
 
-// Worker.prototype = Object.create(Person.prototype) // it is creating a new object which its prototype is the Person one / esta creando un nuevo objeto el cual su prototipo es el de persona
-// Worker.prototype.working = function() {
-//   console.log('I am working...')
+
+// // console.dir(Player) // Problem: Player and PlayerClass methods are mixing in the same prototype / Problema: los metodos the player y playerClass estan mezclados en el mismo prototipo
+
+// Player.prototype = Object.create(PlayerClass.prototype) // it is creating a new object which its prototype is the PlayerClass one / esta creando un nuevo objeto el cual su prototipo es el de PlayerClass
+// Player.prototype.attack = function() {
+//   console.log('Attacking!', this)
+// }
+// PlayerClass.prototype.addSkill = function() {
+//   console.log('Skill added!')
 // }
 
-// console.dir(Worker)
-// console.dir(new Worker(1))
+// console.dir(Player)
+// console.dir(new Player(10, 10, 80))
 
 /////////////////////////////////////////////
 // Example 9
 ////////////////////////////////////////////
 
-// // Super class
-// function Person(name) {
-//   this.name = name
+// // // Super class
+// function PlayerClass(classType) {
+//   this.playerClass = classType
 // }
 
-// Person.prototype.sayHi = function() {
-//   console.log('Hello there!')
+// PlayerClass.prototype.addSkill = function() {
+//   console.log('Skill added!')
 // }
 
-// // Sub class
-// function Worker(name, salary) {
-//   this.salary = salary
-// // Class composition / composition de clases
-//   Person.call(this, name) // I am getting the Person properties by calling its constructor / estoy trayendo las propiedades de persona llamando a su constructor
+// // // Sub class
+// function Player(x, y, hp, classType) {
+//   this.x = x
+//   this.y = y
+//   this.hp = hp
+//   PlayerClass.call(this, classType)
 // }
 
-// Worker.prototype = Object.create(Person.prototype)
 
-// const juan = new Worker('Juan', 100)
-// console.dir(juan)
+// Player.prototype = Object.create(PlayerClass.prototype)
 
+// const player = new Player(10, 10, 80, 'wizard')
+// console.dir(player)
 
 /////////////////////////////////////////////
 // Example 10
 ////////////////////////////////////////////
 
 // // Super class
-// class Person {
-//   constructor(name) {
-//     this.name = name
+// class PlayerClass {
+//   constructor(classType) {
+//     this.playerClass = classType
 //   }
 
-//   sayHi() {
-//     console.log('Hello there!')
-//   }
-// }
-
-// // Sub class
-// class Worker extends Person {
-//   constructor(name, salary) {
-//     super(name) 
-//     this.salary = salary
-//   }
-
-//   working() {
-//     console.log('I am working...')
+//   addSkill() {
+//     console.log('Skill added!')
 //   }
 // }
 
-// const juan = new Worker('juan', 200)
+// // // Sub class
+// class Player extends PlayerClass {
+//   constructor(x, y, hp, classType) {
+//     super(classType)
+//     this.x = x
+//     this.y = y
+//     this.hp = hp
+//   }
+
+//   attack() {
+//     console.log('Attacking!', this)
+//   }
+// }
+
+// const player = new Player(10, 10, 80, 'wizard')
+
+
+
+// game.addPlayer(player)
+
 
 
 /////////////////////////////////////////////
