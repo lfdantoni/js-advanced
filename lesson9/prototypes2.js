@@ -124,6 +124,18 @@ const game = initGame({mapElementId: 'map'})
 // Example 4.3 - getters / setters
 //////////////////////////////////////////////////////////
 
+// function Player(x, y, hp) {
+//   this.x = x
+//   this.y = y
+//   this.hp = hp
+// }
+
+// Object.defineProperty(Player.prototype, "sayHi", {
+//   get: function() {
+//       return "Hello there!";
+//   }
+// });
+
 // class PlayerClass {
 //   constructor(classType) {
 //     this.playerClass = classType
