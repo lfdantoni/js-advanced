@@ -317,36 +317,36 @@ const game = initGame({mapElementId: 'map'})
 // Example 10
 ////////////////////////////////////////////
 
-// // Super class
-// class PlayerClass {
-//   constructor(classType) {
-//     this.playerClass = classType
-//   }
+// Super class
+class PlayerClass {
+  constructor(classType) {
+    this.playerClass = classType
+  }
 
-//   addSkill() {
-//     console.log('Skill added!')
-//   }
-// }
+  addSkill() {
+    console.log('Skill added!')
+  }
+}
 
-// // // Sub class
-// class Player extends PlayerClass {
-//   constructor(x, y, hp, classType) {
-//     super(classType)
-//     this.x = x
-//     this.y = y
-//     this.hp = hp
-//   }
+// // Sub class
+class Player extends PlayerClass {
+  constructor(x, y, hp, classType) {
+    super(classType)
+    this.x = x
+    this.y = y
+    this.hp = hp
+  }
 
-//   attack() {
-//     console.log('Attacking!', this)
-//   }
-// }
+  attack() {
+    console.log('Attacking!', this)
+  }
+}
 
-// const player = new Player(10, 10, 80, 'wizard')
+const player = new Player(10, 10, 80, 'wizard')
 
 
 
-// game.addPlayer(player)
+game.addPlayer(player)
 
 
 
@@ -361,15 +361,30 @@ const game = initGame({mapElementId: 'map'})
 
 // mySoft() // it can be replaced / puede ser remplazado
 
-const program = (function(param) {
-  const privateVar = 1
-  console.log(param)
+// const program = (function(param) {
+//   const privateVar = 1
+//   console.log(param)
 
-  return {
+//   return {
+//     sayHi: () => {
+//       console.log('Hello There!', privateVar)
+//     }
+//   }
+// })(2)
+
+// program.sayHi()
+
+// ; indica una separacion de codigo entre game.addPlayer(player) y esta, de lo contrario js intentara ejecutarlo como
+// game.addPlayer(player)(function(window){ ... }) => esto da un error devido a que addPlayer(player) returna null
+;(function(window) {
+  'use strict'
+  const privateVar = 1
+
+  window.myApp = {
     sayHi: () => {
       console.log('Hello There!', privateVar)
     }
   }
-})(2)
+})(window)
 
-program.sayHi()
+myApp.sayHi()
