@@ -1,7 +1,7 @@
 function initGame(config) {
   let playerObj;
   let enemyObj;
-  const size = 25
+  const size = config.mapSize || 25
   const mapView = document.getElementById(config.mapElementId || 'map')
 
   const drawMap = () => {
@@ -74,7 +74,7 @@ function initGame(config) {
     const playerClass = playerObj.player.playerClass || 'warrior'
     playerObj.domElem.style.backgroundImage = `url(assets/${playerClass}.png)`
     playerObj.domElem.dataset.move = 'ArrowDown'
-    playerObj.domElem.id = 'player'
+    playerObj.domElem.id = playerObj.player.id || 'player'
   
     playerObj.player.x = playerObj.player.x || 10
     playerObj.player.y = playerObj.player.y || 10
@@ -93,7 +93,7 @@ function initGame(config) {
     enemyObj.enemy.y = enemyObj.enemy.y || 20
 
     enemyObj.domElem.classList.add('enemy')
-    enemyObj.domElem.id = 'enemy1'
+    enemyObj.domElem.id = enemyObj.enemy.id || 'enemy1'
     document.getElementById(`cell-${enemyObj.enemy.x}-${enemyObj.enemy.y}`)
       .appendChild(enemyObj.domElem)
   }
