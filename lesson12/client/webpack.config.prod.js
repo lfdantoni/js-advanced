@@ -53,7 +53,9 @@ module.exports = {
     }),
   ],
   optimization: {
+    minimize: true,
     minimizer: [
+      `...`, // extend the existing minimizers / extender los minimizers existentes => check production mode in https://webpack.js.org/configuration/mode/#usage
       new CssMinimizerPlugin(),
     ],
   },
