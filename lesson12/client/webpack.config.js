@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
   entry: './src/index.js',
@@ -44,6 +45,7 @@ module.exports = {
           }
         ],
       },
+      { test: /\.hbs$/, loader: "handlebars-loader" }
     ]
   },
   plugins: [
@@ -51,6 +53,7 @@ module.exports = {
       filename: 'index.html',
       template: 'public/index.html',
       inject: 'body'
-    })
+    }),
+    new Dotenv()
   ]
 }
