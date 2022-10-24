@@ -4,8 +4,10 @@ const componentModule = require('./component')
 
 const app = document.getElementById('app')
 
+console.log(process.env.MY_VAR)
+
 app.appendChild(componentModule.Component())
 
-fetch('http://localhost:3000')
+fetch(process.env.API_URL)
   .then(res => res.text())
   .then(text => console.log(text))

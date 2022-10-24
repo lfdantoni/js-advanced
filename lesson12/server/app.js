@@ -1,5 +1,6 @@
 const express = require('express')
 const cors = require('cors');
+require('dotenv').config()
 
 const app = express()
 
@@ -8,7 +9,7 @@ app.use(cors({
 }));
 
 app.get('/', function (req, res) {
-  res.send('Hello World')
+  res.send('Hello World' + process.env.MY_ENV_VAR)
 })
 
 app.listen(3000, () => {

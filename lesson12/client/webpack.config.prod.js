@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
   entry: './src/index.js',
@@ -39,6 +40,7 @@ module.exports = {
           }
         ],
       },
+      { test: /\.hbs$/, loader: "handlebars-loader" }
     ]
   },
   plugins: [
@@ -57,6 +59,7 @@ module.exports = {
     minimizer: [
       `...`, // extend the existing minimizers / extender los minimizers existentes => check production mode in https://webpack.js.org/configuration/mode/#usage
       new CssMinimizerPlugin(),
+      new Dotenv()
     ],
   },
 }
