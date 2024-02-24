@@ -113,14 +113,18 @@ const index = "x"
 /////////////////////////////////////////////////////////
 
 // classic function / funcion clasica en JS
+// https://developer.mozilla.org/en-US/docs/Glossary/Hoisting
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions#function_hoisting
 console.log(foo2()) // OK!
 console.log(window.foo2()) // OK!
+// function declaration
 function foo2() {
   // JS hoisting, it will be available before the declaration
   console.log("Foo2!")
 }
 
-// console.log(foo) // ERROR!!
+// console.log(foo) // ERROR!! => no hoisting on function expression
+// function expression
 const foo = function() {
   console.log("Foo!")
 }
