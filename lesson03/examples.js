@@ -56,7 +56,7 @@ form.addEventListener('submit', e => {
   const regexpInput = document.getElementById('regexp')
   const regexpValue = regexpInput.value
 
-  // find a string
+  // find a string te
   console.log('regexp - find a string: ', /te/.test(regexpValue))
 
   // aphanumeric characters / caracteres alfanumericos
