@@ -1,0 +1,2 @@
+.htaccess file is necessary to use history api, it is a configuration file which is used by Apache to change the server configuration to a specific website. This file should not be as a public resource and its content should be on the Apache server config httpd.conf
+El archivo .htaccess es necesario para el uso de history api, es un archivo de configuracion que usa Apache para alterar la configuracion del servidor para un sitio determinado. Esto lo correcto seria que deberia estar en el archivo del servidor Apache httpd.conf y no como un archivo publico.
