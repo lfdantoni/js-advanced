@@ -9,7 +9,7 @@ function dragover_handler(ev) {
 
 function drop_handler(ev) {
   ev.preventDefault();
-  const data = ev.dataTransfer.getData("text/plain");
+  const data = ev.dataTransfer.getData("text/plain"); // getData can only be called on drop
   const element = document.getElementById(data).cloneNode(true)
   
   element.id = ''
@@ -19,8 +19,13 @@ function drop_handler(ev) {
   draggableTarget.appendChild(element)
 }
 
+const img = new Image();
+img.src = "pikachu.png";
+
 function dragstart_handler(ev) {
   ev.dataTransfer.setData("text/plain", ev.target.id);
+
+  ev.dataTransfer.setDragImage(img, 75, 50);
 }
 
 draggableTarget.addEventListener('drop', drop_handler)
