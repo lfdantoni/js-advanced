@@ -134,3 +134,45 @@ const p12 = new Promise((resolve) => setTimeout(resolve, 500, 'slow promise 12')
 Promise.race([p11, p12])
   .then(result => console.log(result)) 
   .catch(error => console.error(error)) // takes the rejected one due to it is the fastest one / toma el rejecteado debido a que es el mas rapido
+
+
+console.log('-----------------------------------------------------------------------')
+// Generator function
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/yield
+
+function* generator(i) {
+  yield i;
+  yield i + 10;
+}
+
+const gen = generator(10);
+
+console.log(gen.next().value);
+// Expected output: 10
+
+console.log(gen.next().value);
+// Expected output: 20
+
+console.log(gen.next());
+// {value: undefined, done: true}
+
+// Id generator
+
+function* idGen() {
+  let i = 0;
+
+  while(true) {
+    yield i++;
+  }
+}
+
+const idGenInstance = idGen();
+
+console.log(idGenInstance.next().value);
+// Expected output: 0
+
+console.log(idGenInstance.next().value);
+// Expected output: 1
+
+console.log('-----------------------------------------------------------------------')
