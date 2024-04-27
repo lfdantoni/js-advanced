@@ -1,3 +1,8 @@
+const enemyTypes = {
+  skull: 'skull',
+  ghost: 'ghost'
+}
+
 class Enemy {
   constructor(type, x, y, hp) {
     this.type = type;
@@ -13,7 +18,7 @@ class Enemy {
 
 class SkullEnemy extends Enemy {
   constructor(x, y) {
-    super('skull', x, y, 200);
+    super(enemyTypes.skull, x, y, 200)
   }
 
   attack(player) {}
@@ -23,33 +28,33 @@ class SkullEnemy extends Enemy {
   }
 }
 
-// Factory pattern
-class EnemyFactory {
-  static create(type, x, y) {
-    let enemy;
-
-    switch(type) {
-      case 'skull':
-        enemy = new SkullEnemy(x, y);
-        break;
-      case 'ghost':
-      enemy = new GhostEnemy(x, y);
-      break;  
-    }
-
-    return enemy;
-  }
-}
-
 class GhostEnemy extends Enemy {
   constructor(x, y) {
-    super('ghost', x, y, 150);
+    super(enemyTypes.ghost, x, y, 150)
   }
 
   attack(player) {}
 
   damage(damage) {
     this.hp -= damage * 0.6;
+  }
+}
+
+// Factory pattern
+class EnemyFactory {
+  static create(type, x, y) {
+    let enemy;
+
+    switch(type) {
+      case enemyTypes.ghost:
+        enemy = new GhostEnemy(x, y)
+        break;
+      case enemyTypes.skull:
+        enemy = new SkullEnemy(x, y)
+      break;  
+    }
+
+    return enemy;
   }
 }
 
@@ -154,4 +159,12 @@ console.log(game.getNotifier() === game.getNotifier()) // is true, both are the 
 
 game.getNotifier().subscribe('attack', data => console.log('attack subscriber', data))
 
-game.getNotifier().publish('attack', { enemy: 'skull' })
+
+
+
+game.getNotifier().publish('attack', { damage: 10 })
+
+const currentCell = document.getElementById('player');
+
+// change player hp
+currentCell.style.setProperty('--playerHp', '80%');
