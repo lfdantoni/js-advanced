@@ -1,0 +1,42 @@
+.player {
+  --playerHp: 100%;
+  width: 32px;
+  height: 32px;
+  position: relative;
+}
+
+.player::before {
+  content: '';
+  width: 40px;
+  height: 8px;
+  background-color: white;
+  border: solid 1px black;
+  position: absolute;
+  right: -17%;
+  top: -28%;
+  background-size: var(--playerHp) 100%;
+  background-image: linear-gradient(red, red);
+  background-repeat: no-repeat;
+}
+
+.player[data-move="ArrowRight"] {
+  background-position: 0 -64px;
+}
+
+.player[data-move="ArrowLeft"] {
+  background-position: 0 -32px;
+}
+
+.player[data-move="ArrowUp"] {
+  background-position: 0 -96px;
+}
+
+.player[data-move="ArrowDown"] {
+  background-position: 0 0;
+}
+
+.enemy {
+  background: url(assets/enemy1.png) 0 0;
+  width: 32px;
+  height: 32px;
+}
